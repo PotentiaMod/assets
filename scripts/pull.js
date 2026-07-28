@@ -5,8 +5,8 @@ import fs from 'node:fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = pathUtil.dirname(__filename);
 
-const DEFAULT_TAGS = new Set(['dash']);
-const LIBRARY = 'dash';
+const DEFAULT_TAGS = new Set(['potentia']);
+const LIBRARY = 'potentia';
 
 /**
  * @param {string} path
@@ -29,7 +29,7 @@ const isDirectorySync = path => {
  * @param {string} scratchGui
  */
 const pullAssetsOfType = (type, scratchGui) => {
-    console.log(`Generating Dash ${type} library for scratch-gui...`);
+    console.log(`Generating PotentiaMod ${type} library for scratch-gui...`);
 
     const assetsDirectory = pathUtil.join(__dirname, `../${type}`);
     if (!isDirectorySync(assetsDirectory)) {
@@ -37,7 +37,7 @@ const pullAssetsOfType = (type, scratchGui) => {
         return;
     }
 
-    const guiDashAssets = [];
+    const guiPotentiaModAssets = [];
     const assetsFiles = fs.readdirSync(assetsDirectory)
         .filter(name => pathUtil.extname(name) !== '.json');
     for (const assetFile of assetsFiles) {
@@ -63,20 +63,20 @@ const pullAssetsOfType = (type, scratchGui) => {
             library: LIBRARY,
             path: `/${type}/${encodeURIComponent(assetFile)}`
         };
-        guiDashAssets.push(jsonMetadata);
+        guiPotentiaModAssets.push(jsonMetadata);
     }
         
-    const guiDashAssetsFile = pathUtil.join(scratchGui, `src/lib/libraries/dash-assets/generated-${type}.json`);
-    const dir = pathUtil.dirname(guiDashAssetsFile);
+    const guiPotentiaModAssetsFile = pathUtil.join(scratchGui, `src/lib/libraries/potentia-assets/generated-${type}.json`);
+    const dir = pathUtil.dirname(guiPotentiaModAssetsFile);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(guiDashAssetsFile, JSON.stringify(guiDashAssets, null, 4));
+    fs.writeFileSync(guiPotentiaModAssetsFile, JSON.stringify(guiPotentiaModAssets, null, 4));
 };
 
 const pullEverything = () => {
     try {
         let scratchGui = pathUtil.join(__dirname, '../../scratch-gui');
         if (!isDirectorySync(scratchGui)) {
-            // scratch-gui/node_modules/dash-assets/scripts
+            // scratch-gui/node_modules/potentia-assets/scripts
             scratchGui = pathUtil.join(__dirname, '../../..');
             if (!isDirectorySync(scratchGui)) {
                 throw new Error('Could not find scratch-gui.');
