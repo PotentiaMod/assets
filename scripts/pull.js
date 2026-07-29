@@ -66,7 +66,7 @@ const pullAssetsOfType = (type, scratchGui) => {
         guiPotentiaModAssets.push(jsonMetadata);
     }
         
-    const guiPotentiaModAssetsFile = pathUtil.join(scratchGui, `src/lib/libraries/potentia-assets/generated-${type}.json`);
+    const guiPotentiaModAssetsFile = pathUtil.join(scratchGui, `src/lib/libraries/pot-assets/generated-${type}.json`);
     const dir = pathUtil.dirname(guiPotentiaModAssetsFile);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(guiPotentiaModAssetsFile, JSON.stringify(guiPotentiaModAssets, null, 4));
@@ -76,7 +76,7 @@ const pullEverything = () => {
     try {
         let scratchGui = pathUtil.join(__dirname, '../../scratch-gui');
         if (!isDirectorySync(scratchGui)) {
-            // scratch-gui/node_modules/potentia-assets/scripts
+            // scratch-gui/node_modules/pot-assets/scripts
             scratchGui = pathUtil.join(__dirname, '../../..');
             if (!isDirectorySync(scratchGui)) {
                 throw new Error('Could not find scratch-gui.');

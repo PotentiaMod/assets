@@ -50,7 +50,7 @@ const isDirectorySync = path => {
  * @param {string} type
  */
 const genMetadata4AssetsOfType = async type => {
-    console.log(`Generating metadata for assets in Dash ${type} library...`);
+    console.log(`Generating metadata for assets in PotentiaMod ${type} library...`);
 
     const assetsDirectory = pathUtil.join(__dirname, `../${type}`);
     if (!isDirectorySync(assetsDirectory)) {
